@@ -7,22 +7,26 @@
 <body>
     <div layout:fragment="content" class="container container-start" style="position: relative;">
 
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1 class="display-4">Vitrine - Lista de Produtos</h1>
+        <div>
+            <h1 class="display-4" style="font-weight: 100; font-family: 'Open Sans', sans-serif; font-size: 40px;">Bem vindo a Vitrine de Produtos da ArtHub</h1>
+            <h1 class="display-4" id="subtituloVitrine">Lar do artesanato regional paraibano</h1>
         </div>
 
         <div id='estrutura'>
-            <div class='cardapio'>
+            <div class='vitrine'>
                 <div th:each="produto : ${produtos}">
                     <div class='item'>
                         <h2 th:text="${produto.nome}"></h2>
-                        <h3 th:text="${produto.descricao}"></h3>
-                        <h3 th:text="${produto.preco}"></h3>
+                        <h3 th:text="'Descrição: ' + ${produto.descricao}"></h3>
+                        <img th:src="${produto.imagemUrl}"
+                             alt="Imagem do Produto">
+                        <h3 th:text="'Preço: R$ ' + ${produto.preco}" id="preco"></h3>
+                        <!--
                         <div style="align-items: center;">
                             <label for="${nome}">Quantidade </label>
                             <input style="color:black;text-align:center;width:70px;height:50px;align:left;border-radius:35px;" type="number" class='count' name="item" value="${nome}" id="${nome}">
                         </div>
-                        <img th:src="${produto.imagemUrl}" alt="Imagem do Produto">
+                        -->
                         <button>Adicionar ao carrinho</button>
                         <br>
                     </div>
