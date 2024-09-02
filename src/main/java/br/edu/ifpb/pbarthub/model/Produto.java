@@ -25,4 +25,7 @@ public class Produto {
 
     @Positive(message = "O preço deve ser maior que zero.")
     private Double preco;
+
+    @NotBlank(message = "O campo URL da imagem é obrigatório.")
+    private String imagemUrl;
 }

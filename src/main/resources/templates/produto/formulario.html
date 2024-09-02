@@ -28,6 +28,10 @@
                     <label for="preco" class="form-label">Preço:</label>
                     <input type="number" id="preco" th:field="*{preco}" class="form-control" step="0.01" placeholder="Preço do produto" required/>
                 </div>
+                <div class="mb-3">
+                    <label for="imagemUrl" class="form-label">Imagem:</label>
+                    <input type="text" id="imagemUrl" th:field="*{imagemUrl}" required/>
+                </div>
                 <div class="d-flex justify-content-end mt-4">
                     <button type="submit" class="btn btn-primary btn-lg">Salvar</button>
                 </div>

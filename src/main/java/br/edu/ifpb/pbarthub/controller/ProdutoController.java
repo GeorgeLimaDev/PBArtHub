@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -20,6 +21,13 @@ public class ProdutoController {
     public String listarProdutos(Model model) {
         model.addAttribute("produtos", produtoService.listarTodos());
         return "produto/listar";
+    }
+
+    @GetMapping("/vitrine")
+    public String listarProdutosExibicao(Model model) {
+        List<Produto> produtos = produtoService.listarTodos();
+        model.addAttribute("produtos", produtos);
+        return "produto/listarExibicao";
     }
 
     @GetMapping("/novo")

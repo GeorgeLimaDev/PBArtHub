@@ -1,0 +1,35 @@
+<html   xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout/layout}"
+        th:with="titulo='Lista de Produtos'"
+>
+
+<body>
+    <div layout:fragment="content" class="container container-start" style="position: relative;">
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="display-4">Vitrine - Lista de Produtos</h1>
+        </div>
+
+        <div id='estrutura'>
+            <div class='cardapio'>
+                <div th:each="produto : ${produtos}">
+                    <div class='item'>
+                        <h2 th:text="${produto.nome}"></h2>
+                        <h3 th:text="${produto.descricao}"></h3>
+                        <h3 th:text="${produto.preco}"></h3>
+                        <div style="align-items: center;">
+                            <label for="${nome}">Quantidade </label>
+                            <input style="color:black;text-align:center;width:70px;height:50px;align:left;border-radius:35px;" type="number" class='count' name="item" value="${nome}" id="${nome}">
+                        </div>
+                        <img th:src="${produto.imagemUrl}" alt="Imagem do Produto">
+                        <button>Adicionar ao carrinho</button>
+                        <br>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
