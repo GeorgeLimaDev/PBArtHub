@@ -1,35 +1,46 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Página Inicial</title>
-</head>
+<html   xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout/layout}"
+        th:with="titulo='PB ArtHub'"
+>
+
 <body>
+    <div layout:fragment="content" class="container container-start" style="position: relative;">
+        <section class="a">
+            <ul class="inicio">
+                <li class="inicio-esquerda">
+                    <h1>Boas vindas ao<br>PB Art Hub</h1>
+                    <h3>Lar do artesanato regional paraibano</h3>
+                    <button  type="button" class="btn btn-outline-dark" ><a  onclick="window.location.href='http://localhost:9090/PbArtHub/usuarios/novo';">Cadastrar-se</a></button>
+                </li>
+                <li class="inicio-direita"></li>
+            </ul>
+        </section>
 
-<h1>Bem-vindo ao PbArtHub</h1>
+        <section class="b">
+            <ul class="sobre">
+                <li class="sobre-esquerda"></li>
+                <li class="sobre-direita">
+                    <h1>Sobre</h1>
+                    <h3>O PB ArtHub é uma iniciativa social para digitalizar o comércio de artesanato regional paraibano.
+                        Pretendemos fazer com que a nossa arte local possa ser vista e experienciada sem a limitação de distancias ou
+                        fronteiras. Conheça nossos artistas parceiros, seus trabalhos, e como eles refletem a cultura e o dia-a-dia na
+                        Paraíba.<br>
+                        <p>Torne-se um artesão parceiro.</p>
+                    </h3>
+                </li>
+            </ul>
+        </section>
 
-<!-- Botão para a rota de criação de usuários -->
-<button onclick="window.location.href='http://localhost:9090/PbArtHub/usuarios/novo';">
-    Cadastrar Novo Usuário
-</button>
+        <div>
+            <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3959.058182410427!2d-34.82578888462308!3d-7.119256271793753!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7acdd28cfa496b7%3A0x5bee687a9ae9c5b!2sBusto%20Tamandar%C3%A9!5e0!3m2!1spt-BR!2sbr!4v1653451164782!5m2!1spt-BR!2sbr"
+                    width="450" height="450" style="width: 100%;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
 
-<!-- Botão para a rota de listagem de usuários -->
-<button onclick="window.location.href='http://localhost:9090/PbArtHub/usuarios';">
-    Listar Usuários
-</button>
 
-<!-- Botão para a rota de criação de produtos -->
-<button onclick="window.location.href='http://localhost:9090/PbArtHub/produtos/novo';">
-    Cadastrar Novo Produto
-</button>
-
-<!-- Botão para a rota de listagem de produtos -->
-<button onclick="window.location.href='http://localhost:9090/PbArtHub/produtos';">
-    Listar Produtos
-</button>
-
+    </div>
 </body>
 </html>
+

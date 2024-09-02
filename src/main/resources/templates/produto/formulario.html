@@ -1,31 +1,38 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Cadastro de Produto</title>
-</head>
+<html   xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout/layout}"
+        th:with="titulo='Cadastro de Produto'"
+>
+
 <body>
+    <div layout:fragment="content" class="container container-start" style="position: relative;">
 
-<h1>Cadastro de Produto</h1>
+        <div class="container my-5">
+            <!-- Título da Página -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="display-4">Cadastro de Produto</h1>
+                <a th:href="@{/produtos}" class="btn btn-secondary btn-lg text-white">Voltar</a>
+            </div>
 
-<form th:action="@{/produtos}" th:object="${produto}" method="post">
-    <div>
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" th:field="*{nome}" required/>
+            <!-- Formulário de Cadastro de Produto -->
+            <form th:action="@{/produtos}" th:object="${produto}" method="post">
+                <div class="form-group">
+                    <label for="nome" class="form-label">Nome:</label>
+                    <input type="text" id="nome" th:field="*{nome}" class="form-control" placeholder="Nome do produto" required/>
+                </div>
+                <div class="form-group">
+                    <label for="descricao" class="form-label">Descrição:</label>
+                    <textarea id="descricao" th:field="*{descricao}" class="form-control" rows="4" placeholder="Descrição do produto" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="preco" class="form-label">Preço:</label>
+                    <input type="number" id="preco" th:field="*{preco}" class="form-control" step="0.01" placeholder="Preço do produto" required/>
+                </div>
+                <div class="d-flex justify-content-end mt-4">
+                    <button type="submit" class="btn btn-primary btn-lg">Salvar</button>
+                </div>
+            </form>
+        </div>
     </div>
-    <div>
-        <label for="descricao">Descrição:</label>
-        <textarea id="descricao" th:field="*{descricao}" required></textarea>
-    </div>
-    <div>
-        <label for="preco">Preço:</label>
-        <input type="number" id="preco" th:field="*{preco}" step="0.01" required/>
-    </div>
-    <div>
-        <button type="submit">Salvar</button>
-    </div>
-</form>
-
-<a th:href="@{/produtos}">Voltar</a>
-
 </body>
 </html>

@@ -1,37 +1,44 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Lista de Produtos</title>
-</head>
+<html   xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout/layout}"
+        th:with="titulo='Lista de Produtos'"
+>
+
 <body>
+    <div layout:fragment="content" class="container container-start" style="position: relative;">
 
-<h1>Lista de Produtos</h1>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="display-4">Lista de Produtos</h1>
+            <a th:href="@{/produtos/novo}"  class="btn btn-success btn-lg  text-white">Novo Produto</a>
+        </div>
 
-<table>
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Nome</th>
-        <th>Descrição</th>
-        <th>Preço</th>
-        <th>Ações</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="produto : ${produtos}">
-        <td th:text="${produto.id}"></td>
-        <td th:text="${produto.nome}"></td>
-        <td th:text="${produto.descricao}"></td>
-        <td th:text="${produto.preco}"></td>
-        <td>
-            <a th:href="@{/produtos/editar/{id}(id=${produto.id})}">Editar</a>
-            <a th:href="@{/produtos/excluir/{id}(id=${produto.id})}" onclick="return confirm('Tem certeza que deseja excluir este produto?');">Excluir</a>
-        </td>
-    </tr>
-    </tbody>
-</table>
-
-<a th:href="@{/produtos/novo}">Novo Produto</a>
-
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered table-striped">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Descrição</th>
+                    <th scope="col">Preço</th>
+                    <th scope="col">Ações</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="produto : ${produtos}">
+                    <th scope="row" th:text="${produto.id}"></th>
+                    <td th:text="${produto.nome}"></td>
+                    <td th:text="${produto.descricao}"></td>
+                    <td th:text="${produto.preco}"></td>
+                    <td>
+                        <div class="btn-group" role="group">
+                            <a th:href="@{/produtos/editar/{id}(id=${produto.id})}" class="btn btn-warning btn-sm">Editar</a>
+                            <a th:href="@{/produtos/excluir/{id}(id=${produto.id})}" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir este produto?');">Excluir</a>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </body>
 </html>

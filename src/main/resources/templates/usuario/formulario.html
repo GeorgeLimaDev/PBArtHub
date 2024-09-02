@@ -1,31 +1,36 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Cadastro de Usuário</title>
-</head>
+<html   xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout/layout}"
+        th:with="titulo='Cadastro de Usuário'"
+>
+
 <body>
+    <div layout:fragment="content" class="container container-start" style="position: relative;">
+        <div class="container my-5">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="display-4">Cadastro de Usuário</h1>
+                <a th:href="@{/usuarios}" class="btn btn-secondary btn-lg text-white">Voltar</a>
+            </div>
 
-<h1>Cadastro de Usuário</h1>
-
-<form th:action="@{/usuarios}" th:object="${usuario}" method="post">
-    <div>
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" th:field="*{nome}" required/>
+            <!-- Formulário de Cadastro de Produto -->
+            <form th:action="@{/usuarios}" th:object="${usuario}" method="post">
+                <div class="form-group">
+                    <label for="nome" class="form-label">Nome:</label>
+                    <input type="text" id="nome" th:field="*{nome}" class="form-control" placeholder="Nome do usuário" required/>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="form-label">Email:</label>
+                    <textarea id="email" th:field="*{email}" class="form-control" rows="4" placeholder="Email do usuário" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="senha" class="form-label">Senha:</label>
+                    <input type="password" id="senha" th:field="*{senha}" class="form-control" step="0.01" placeholder="Senha do usuário" required/>
+                </div>
+                <div class="d-flex justify-content-end mt-4">
+                    <button type="submit" class="btn btn-primary btn-lg">Salvar</button>
+                </div>
+            </form>
+        </div>
     </div>
-    <div>
-        <label for="email">Email:</label>
-        <input type="email" id="email" th:field="*{email}" required/>
-    </div>
-    <div>
-        <label for="senha">Senha:</label>
-        <input type="password" id="senha" th:field="*{senha}" required/>
-    </div>
-    <div>
-        <button type="submit">Salvar</button>
-    </div>
-</form>
-
-<a th:href="@{/usuarios}">Voltar</a>
-
 </body>
 </html>
