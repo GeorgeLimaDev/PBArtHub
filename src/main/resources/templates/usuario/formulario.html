@@ -14,6 +14,7 @@
 
             <!-- Formulário de Cadastro de Produto -->
             <form th:action="@{/usuarios}" th:object="${usuario}" method="post">
+                <input type="hidden" th:field="*{id}"/>
                 <div class="form-group">
                     <label for="nome" class="form-label">Nome:</label>
                     <input type="text" id="nome" th:field="*{nome}" class="form-control" placeholder="Nome do usuário" required/>
