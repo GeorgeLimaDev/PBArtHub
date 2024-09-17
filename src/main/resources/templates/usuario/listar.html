@@ -18,6 +18,7 @@
                     <th scope="col">ID</th>
                     <th scope="col">Nome</th>
                     <th scope="col">Email</th>
+                    <th scope="col">Tipo de Usuário</th>
                     <th scope="col">Ações</th>
                 </tr>
                 </thead>
@@ -26,6 +27,7 @@
                     <td th:text="${usuario.id}"></td>
                     <td th:text="${usuario.nome}"></td>
                     <td th:text="${usuario.email}"></td>
+                    <td th:text="${usuario.vendedor} == true ? 'Vendedor' : 'Cliente'"></td>
                     <td>
                         <div class="btn-group" role="group">
                             <a th:href="@{/usuarios/editar/{id}(id=${usuario.id})}" class="btn btn-warning btn-sm">Editar</a>

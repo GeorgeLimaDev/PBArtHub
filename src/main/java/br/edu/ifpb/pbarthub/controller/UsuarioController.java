@@ -49,5 +49,10 @@ public class UsuarioController {
         usuarioService.excluir(id);
         return "redirect:/usuarios";
     }
+
+    @GetMapping("/login")
+    public String loginUsuario() {
+        return "usuario/login";
+    }
 }
 

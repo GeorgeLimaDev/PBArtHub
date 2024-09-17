@@ -27,4 +27,8 @@ public class Usuario {
 
     @NotBlank(message = "O campo senha é obrigatório.")
     private String senha;
+
+    @NotBlank(message = "O campo vendedor é obrigatório.")
+    private Boolean vendedor;
+
 }
