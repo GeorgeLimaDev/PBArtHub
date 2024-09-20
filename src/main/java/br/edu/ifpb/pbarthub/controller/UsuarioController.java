@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import br.edu.ifpb.pbarthub.controller.ProdutoController;
 import br.edu.ifpb.pbarthub.controller.UsuarioController;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import java.util.Optional;
@@ -18,6 +19,9 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioService usuarioService;
+
+    @Autowired
+    private ProdutoController produtoController;
 
     @GetMapping
     public String listarUsuarios(Model model) {
@@ -54,7 +58,7 @@ public class UsuarioController {
     }
 
     @PostMapping("/vitrine/validar")
-    public String validarUsuario(@RequestParam("email_validar") String email_validar,@RequestParam("senha_validar") String senha_validar, Model model) {
+    public String validarUsuario(@RequestParam("email_validar") String email_validar,@RequestParam("senha_validar") String senha_validar, Model model,  RedirectAttributes attr) {
 
         // Checando se tem usuario com esse email
         Usuario usuario = usuarioService.findByEmail(email_validar).orElse(null);
@@ -63,7 +67,8 @@ public class UsuarioController {
         if (usuario != null) {
             if (senha_validar.equals(usuario.getSenha())){
                 //model.addAttribute("success", String.format("Bem-vindo à Vitrine de Produtos da ArtHub, %s!", usuario.getNome()));
-                return "produto/listarExibicao";
+                attr.addFlashAttribute("success", "Bem-vindo à Vitrine de Produtos da ArtHub, " + usuario.getNome());
+                return produtoController.listarProdutosExibicao(model, usuario, attr);
             }
             else{
                 model.addAttribute("erro", "Dados incorretos. Tente novamente.");
@@ -83,8 +88,7 @@ public class UsuarioController {
             model.addAttribute("erro", "Usuario não encontrado. Tente novamente.");
             return "produto/acesso";
         }
-
-         */
+        */
     }
 }
 

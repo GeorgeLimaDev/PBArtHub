@@ -1,14 +1,17 @@
 package br.edu.ifpb.pbarthub.controller;
 
 import br.edu.ifpb.pbarthub.model.Produto;
+import br.edu.ifpb.pbarthub.model.Usuario;
 import br.edu.ifpb.pbarthub.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.jar.Attributes;
 
 @Controller
 @RequestMapping("/produtos")
@@ -25,8 +28,10 @@ public class ProdutoController {
     }
 
     @GetMapping("/vitrine")
-    public String listarProdutosExibicao(Model model) {
+    public String listarProdutosExibicao(Model model, Usuario usuario, RedirectAttributes attr) {
         List<Produto> produtos = produtoService.listarTodos();
+
+        model.addAttribute("usuario", usuario);
         model.addAttribute("produtos", produtos);
         return "produto/listarExibicao";
     }
