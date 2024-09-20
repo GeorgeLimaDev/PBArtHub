@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import br.edu.ifpb.pbarthub.controller.ProdutoController;
+import br.edu.ifpb.pbarthub.controller.UsuarioController;
 
 
 import java.util.Optional;
@@ -52,16 +53,38 @@ public class UsuarioController {
         return "redirect:/usuarios";
     }
 
-    private String email_teste = "am@gmail.com";
     @PostMapping("/vitrine/validar")
     public String validarUsuario(@RequestParam("email_validar") String email_validar,@RequestParam("senha_validar") String senha_validar, Model model) {
 
+        // Checando se tem usuario com esse email
+        Usuario usuario = usuarioService.findByEmail(email_validar).orElse(null);
+
+        // Usuario localizado
+        if (usuario != null) {
+            if (senha_validar.equals(usuario.getSenha())){
+                //model.addAttribute("success", String.format("Bem-vindo à Vitrine de Produtos da ArtHub, %s!", usuario.getNome()));
+                return "produto/listarExibicao";
+            }
+            else{
+                model.addAttribute("erro", "Dados incorretos. Tente novamente.");
+                return "produto/acesso";
+            }
+        }
+        // Email sem cadastro
+        else {
+            model.addAttribute("erro", "Não foi encontrado um cadastro com esse email. Tente novamente.");
+            return "produto/acesso";
+        }
+
+        /*
         if (email_teste.equals(email_validar)) {
             return "redirect:/produtos/vitrine";
         } else {
             model.addAttribute("erro", "Usuario não encontrado. Tente novamente.");
             return "produto/acesso";
         }
+
+         */
     }
 }
 

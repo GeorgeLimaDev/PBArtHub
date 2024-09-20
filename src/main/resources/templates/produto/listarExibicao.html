@@ -10,9 +10,15 @@
         <div>
             <h1 class="display-4" style="font-weight: 100; font-family: 'Open Sans', sans-serif; font-size: 40px;">Bem vindo a Vitrine de Produtos da ArtHub</h1>
             <h1 class="display-4" id="subtituloVitrine">Lar do artesanato regional paraibano</h1>
+
         </div>
 
         <div id='estrutura'>
+
+            <div th:if="${sucess}" class="alert" id="alertPopup">
+                <p th:text="${sucess}"></p>
+            </div>
+
             <div class='vitrine'>
                 <div th:each="produto : ${produtos}">
                     <div class='item'>
