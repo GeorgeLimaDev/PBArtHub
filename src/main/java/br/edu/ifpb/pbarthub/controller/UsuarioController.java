@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import br.edu.ifpb.pbarthub.controller.ProdutoController;
+
 
 import java.util.Optional;
 
@@ -50,9 +52,16 @@ public class UsuarioController {
         return "redirect:/usuarios";
     }
 
-    @GetMapping("/login")
-    public String loginUsuario() {
-        return "usuario/login";
+    private String email_teste = "am@gmail.com";
+    @PostMapping("/vitrine/validar")
+    public String validarUsuario(@RequestParam("email_validar") String email_validar,@RequestParam("senha_validar") String senha_validar, Model model) {
+
+        if (email_teste.equals(email_validar)) {
+            return "redirect:/produtos/vitrine";
+        } else {
+            model.addAttribute("erro", "Usuario não encontrado. Tente novamente.");
+            return "produto/acesso";
+        }
     }
 }
 

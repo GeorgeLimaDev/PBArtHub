@@ -17,6 +17,7 @@ public class ProdutoController {
     @Autowired
     private ProdutoService produtoService;
 
+
     @GetMapping
     public String listarProdutos(Model model) {
         model.addAttribute("produtos", produtoService.listarTodos());
@@ -56,5 +57,10 @@ public class ProdutoController {
     public String excluirProduto(@PathVariable Long id) {
         produtoService.excluir(id);
         return "redirect:/produtos";
+    }
+
+    @GetMapping("/acesso")
+    public String acessoVitrine() {
+        return "produto/acesso";
     }
 }
