@@ -1,0 +1,35 @@
+<html   xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout/layout}"
+        th:with="titulo='Carrinho'"
+>
+
+<body>
+    <div layout:fragment="content" class="container container-start" style="position: relative;">
+
+
+
+        <h1 class="display-4" style="font-weight: 100; font-family: 'Open Sans', sans-serif; font-size: 40px;">Bem vindo <span th:text="${usuarioCarrinhoId}"></span>,ao seu carrinho.</h1>
+        <h1 class="display-4" id="subtituloVitrine">Lar do artesanato regional paraibano</h1>
+
+
+        <div id='estrutura'>
+
+            <div class='vitrine'  th:action="@{/usuarios/carrinho}" method="post">
+                <div th:each="produto : ${produtos}">
+                    <div class='item'>
+                        <h2 th:text="${produto.nome}"></h2>
+                        <h3 th:text="'Descrição: ' + ${produto.descricao}"></h3>
+                        <img th:src="${produto.imagemUrl}"
+                             alt="Imagem do Produto">
+                        <h3 th:text="'Preço: R$ ' + ${produto.preco}" id="preco"></h3>
+                        <br>
+                    </div>
+                    <br>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

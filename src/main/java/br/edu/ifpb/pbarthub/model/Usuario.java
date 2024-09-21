@@ -5,6 +5,9 @@ import lombok.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @Entity
@@ -30,5 +33,9 @@ public class Usuario {
 
     @NotBlank(message = "O campo vendedor é obrigatório.")
     private Boolean vendedor;
+
+    @ManyToMany
+    private List<Produto> carrinho = new ArrayList<>();
+
 
 }

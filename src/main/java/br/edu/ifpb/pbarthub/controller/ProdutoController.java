@@ -68,4 +68,6 @@ public class ProdutoController {
     public String acessoVitrine() {
         return "produto/acesso";
     }
+
+
 }

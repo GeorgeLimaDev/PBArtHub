@@ -9,8 +9,8 @@ import org.springframework.data.jpa.repository.Query;
 
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
-
     Optional<Usuario> findByEmail(String email);
+
 
     @Query("SELECT COALESCE(MAX(u.id), 0) FROM Usuario u")
     Integer findMaxId();

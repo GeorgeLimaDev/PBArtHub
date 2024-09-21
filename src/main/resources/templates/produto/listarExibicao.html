@@ -15,11 +15,19 @@
 
         <div id='estrutura'>
 
+            <form th:action="@{/usuarios/exibirCarrinho}" method="post">
+                <input type="hidden" name="usuarioCarrinhoId" th:value="${usuario.id}" />
+                <button type="submit" class="btn btn-primary btn-lg">Ver o carrinho</button>
+            </form>
+
+
+
+
             <div th:if="${sucess}" class="alert" id="alertPopup">
                 <p th:text="${sucess}"></p>
             </div>
 
-            <div class='vitrine'>
+            <div class='vitrine'  th:action="@{/usuarios/carrinho}" method="post">
                 <div th:each="produto : ${produtos}">
                     <div class='item'>
                         <h2 th:text="${produto.nome}"></h2>
@@ -33,12 +41,15 @@
                             <input style="color:black;text-align:center;width:70px;height:50px;align:left;border-radius:35px;" type="number" class='count' name="item" value="${nome}" id="${nome}">
                         </div>
                         -->
-                        <button>Adicionar ao carrinho</button>
+                        <input type="hidden" name="produtoCarrinho" th:value="${produto}" />
+                        <input type="hidden" name="usuarioCarrinho" th:value="${usuario}" />
+                        <button type="submit" class="btn btn-primary btn-lg">Adicionar ao carrinho</button>
                         <br>
                     </div>
                     <br>
                 </div>
             </div>
+
         </div>
     </div>
 </body>
