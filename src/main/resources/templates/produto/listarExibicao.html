@@ -16,7 +16,7 @@
         <div id='estrutura'>
 
             <form th:action="@{/usuarios/exibirCarrinho}" method="post">
-                <input type="hidden" name="usuarioCarrinhoId" th:value="${usuario.id}" />
+                <input type="hidden" name="usuarioCarrinhoEmail" th:value="${usuario.email}" />
                 <button type="submit" class="btn btn-primary btn-lg">Ver o carrinho</button>
             </form>
 
@@ -27,28 +27,25 @@
                 <p th:text="${sucess}"></p>
             </div>
 
-            <div class='vitrine'  th:action="@{/usuarios/carrinho}" method="post">
+            <div class='vitrine'>
                 <div th:each="produto : ${produtos}">
                     <div class='item'>
                         <h2 th:text="${produto.nome}"></h2>
                         <h3 th:text="'Descrição: ' + ${produto.descricao}"></h3>
-                        <img th:src="${produto.imagemUrl}"
-                             alt="Imagem do Produto">
+                        <img th:src="${produto.imagemUrl}" alt="Imagem do Produto">
                         <h3 th:text="'Preço: R$ ' + ${produto.preco}" id="preco"></h3>
-                        <!--
-                        <div style="align-items: center;">
-                            <label for="${nome}">Quantidade </label>
-                            <input style="color:black;text-align:center;width:70px;height:50px;align:left;border-radius:35px;" type="number" class='count' name="item" value="${nome}" id="${nome}">
-                        </div>
-                        -->
-                        <input type="hidden" name="produtoCarrinho" th:value="${produto}" />
-                        <input type="hidden" name="usuarioCarrinho" th:value="${usuario}" />
-                        <button type="submit" class="btn btn-primary btn-lg">Adicionar ao carrinho</button>
+            
+                        <!-- Atualizando o formulário para enviar apenas o ID do produto -->
+                        <form th:action="@{/usuarios/carrinho}" method="post">
+                            <input type="hidden" name="produtoId" th:value="${produto.id}" />
+                            <button type="submit" class="btn btn-primary btn-lg">Adicionar ao carrinho</button>
+                        </form>
                         <br>
                     </div>
                     <br>
                 </div>
             </div>
+            
 
         </div>
     </div>

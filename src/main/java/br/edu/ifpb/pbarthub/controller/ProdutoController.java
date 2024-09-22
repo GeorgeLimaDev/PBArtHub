@@ -11,7 +11,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.jar.Attributes;
+// import java.util.jar.Attributes;
 
 @Controller
 @RequestMapping("/produtos")
@@ -32,6 +32,7 @@ public class ProdutoController {
         List<Produto> produtos = produtoService.listarTodos();
 
         model.addAttribute("usuario", usuario);
+        System.out.println("Na página montada: " + usuario.getNome());
         model.addAttribute("produtos", produtos);
         return "produto/listarExibicao";
     }

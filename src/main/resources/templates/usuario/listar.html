@@ -27,12 +27,12 @@
                     <td th:text="${usuario.id}"></td>
                     <td th:text="${usuario.nome}"></td>
                     <td th:text="${usuario.email}"></td>
-                    <td th:text="${usuario.vendedor} == true ? 'Vendedor' : 'Cliente'"></td>
+                    <td th:text="${usuario.vendedor ? 'Vendedor' : 'Cliente'}"></td>
                     <td>
                         <div class="btn-group" role="group">
                             <a th:href="@{/usuarios/editar/{id}(id=${usuario.id})}" class="btn btn-warning btn-sm">Editar</a>
 
-                            <a  th:href="@{/usuarios/excluir/{id}(id=${usuario.id})}" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir este produto?');">Excluir</a>
+                            <a  th:href="@{/usuarios/excluir/{id}(id=${usuario.id})}" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir este usuário?');">Excluir</a>
                         </div>
                     </td>
                 </tr>
