@@ -18,7 +18,7 @@
             <hr class="my-4">
             <form th:action="@{/usuarios/exibirCarrinho}" method="post">
                 <input type="hidden" name="usuarioCarrinhoEmail" th:value="${usuario.email}" />
-                <button type="submit" class="btn btn-primary btn-lg">Ver o carrinho</button>
+                <button type="submit" class="btn btn-primary btn-lg  mt-3">Ver o carrinho</button>
             </form>
 
             <div th:if="${sucess}" class="alert" id="alertPopup">

@@ -79,12 +79,12 @@ public class UsuarioController {
             } else {
                 // Senha incorreta
                 model.addAttribute("erro", "Dados incorretos. Tente novamente.");
-                return "acesso";
+                return produtoController.acessoVitrine();
             }
         } else {
             // Email sem cadastro
             model.addAttribute("erro", "Não foi encontrado um cadastro com esse email. Tente novamente.");
-            return "acesso";
+            return produtoController.acessoVitrine();
         }
     }
 
