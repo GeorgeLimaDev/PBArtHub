@@ -15,13 +15,11 @@
 
         <div id='estrutura'>
 
+            <hr class="my-4">
             <form th:action="@{/usuarios/exibirCarrinho}" method="post">
                 <input type="hidden" name="usuarioCarrinhoEmail" th:value="${usuario.email}" />
                 <button type="submit" class="btn btn-primary btn-lg">Ver o carrinho</button>
             </form>
-
-
-
 
             <div th:if="${sucess}" class="alert" id="alertPopup">
                 <p th:text="${sucess}"></p>
@@ -34,12 +32,13 @@
                         <h3 th:text="'Descrição: ' + ${produto.descricao}"></h3>
                         <img th:src="${produto.imagemUrl}" alt="Imagem do Produto">
                         <h3 th:text="'Preço: R$ ' + ${produto.preco}" id="preco"></h3>
+                        <button class="btn btn-primary btn-lg">Adicionar ao carrinho</button>
             
-                        <!-- Atualizando o formulário para enviar apenas o ID do produto -->
+                        <!-- Atualizando o formulário para enviar apenas o ID do produto
                         <form th:action="@{/usuarios/carrinho}" method="post">
                             <input type="hidden" name="produtoId" th:value="${produto.id}" />
                             <button type="submit" class="btn btn-primary btn-lg">Adicionar ao carrinho</button>
-                        </form>
+                        </form>-->
                         <br>
                     </div>
                     <br>

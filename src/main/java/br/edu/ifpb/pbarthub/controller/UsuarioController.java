@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -23,6 +25,7 @@ public class UsuarioController {
 
     @Autowired
     private ProdutoService produtoService;
+
 
     @GetMapping
     public String listarUsuarios(Model model) {
@@ -75,12 +78,12 @@ public class UsuarioController {
             } else {
                 // Senha incorreta
                 model.addAttribute("erro", "Dados incorretos. Tente novamente.");
-                return "produto/acesso";
+                return "acesso";
             }
         } else {
             // Email sem cadastro
             model.addAttribute("erro", "Não foi encontrado um cadastro com esse email. Tente novamente.");
-            return "produto/acesso";
+            return "acesso";
         }
     }
 
@@ -106,17 +109,32 @@ public String adicionarCarrinho(@RequestParam("produtoId") Long produtoId, Usuar
     return exibirCarrinho(model, attr, usuario);
 }
 
-@PostMapping("/exibirCarrinho")
-public String exibirCarrinho(Model model, RedirectAttributes attr, Usuario usuarioAtual) {
-    if (usuarioAtual != null) {
-        model.addAttribute("usuario", usuarioAtual);
-        model.addAttribute("produtosCarrinho", usuarioAtual.getCarrinho());
-        System.out.println("Exibindo carrinho do usuário: " + usuarioAtual.getNome());
-        return "usuario/carrinho";
+    @PostMapping("/exibirCarrinho")
+    public String exibirCarrinho(Model model, RedirectAttributes attr, Usuario usuarioAtual) {
+
+        if (usuarioAtual != null) {
+            List<Produto> produtos = produtoService.listarTodos();
+
+            if (produtos.size() > 3) {
+                produtos = produtos.subList(0, 3); // Limita a lista aos 3 primeiros itens
+            }
+
+            model.addAttribute("usuario", usuarioAtual);
+            model.addAttribute("produtos", produtos);
+            model.addAttribute("produtosCarrinho", usuarioAtual.getCarrinho());
+            System.out.println("Exibindo carrinho do usuário: " + usuarioAtual.getNome());
+            return "usuario/carrinho";
+        }
+
+        attr.addFlashAttribute("erro", "Você precisa estar logado para ver o carrinho.");
+        //System.out.println("Procurando pelo usuario: " + usuarioAtual);
+        //System.out.println("Passou aqui?");
+        return "redirect:/produtos/acesso";
     }
-    attr.addFlashAttribute("erro", "Você precisa estar logado para ver o carrinho.");
-    System.out.println("Procurando pelo usuario: " + usuarioAtual);
-    System.out.println("Passou aqui?");
-    return "redirect:/produtos/acesso";
+
+    @GetMapping("/confirmacaoCompra")
+    public String confirmacaoCompra (Model model) {
+        return "produto/confirmacaoCompra";
     }
+
 }

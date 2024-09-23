@@ -65,10 +65,14 @@ public class ProdutoController {
         return "redirect:/produtos";
     }
 
+
     @GetMapping("/acesso")
     public String acessoVitrine() {
         return "produto/acesso";
     }
 
 
+
 }
+
+

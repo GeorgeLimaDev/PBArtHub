@@ -43,8 +43,8 @@
                             Cadastro
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#" onclick="window.location.href='http://localhost:9090/PbArtHub/usuarios/novo';">Cadastrar Novo Usuário</a></li>
-                            <li><a class="dropdown-item" href="#" onclick="window.location.href='http://localhost:9090/PbArtHub/produtos/novo';">
+                            <li><a class="dropdown-item" href="#" th:href="@{/usuarios/novo}">Cadastrar Novo Usuário</a></li>
+                            <li><a class="dropdown-item" href="#" th:href="@{/produtos/novo}">
                                 Cadastrar Novo Produto
                             </a></li>
                         </ul>
@@ -54,20 +54,21 @@
                             Consulta
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" onclick="window.location.href='http://localhost:9090/PbArtHub/usuarios';">
+                            <li><a class="dropdown-item" th:href="@{/usuarios}">
                                 Listar Usuários
                             </a></li>
-                            <li><a class="dropdown-item" onclick="window.location.href='http://localhost:9090/PbArtHub/produtos';">
+                            <li><a class="dropdown-item" th:href="@{/produtos}">
                                 Listar Produtos
                             </a></li>
-                            <li><a class="dropdown-item" onclick="window.location.href='http://localhost:9090/PbArtHub/produtos/acesso';">
+
+                            <li><a class="dropdown-item" th:href="@{/produtos/acesso}">
                                 Acesso Vitrine
                             </a></li>
-
-                            <li><a class="dropdown-item" onclick="window.location.href='http://localhost:9090/PbArtHub/produtos/vitrine';">
+                            <!--
+                            <li><a class="dropdown-item" th:href="@{/produtos/vitrine}">
                                 Vitrine
                             </a></li>
-
+                            -->
                         </ul>
                     </li>
 
