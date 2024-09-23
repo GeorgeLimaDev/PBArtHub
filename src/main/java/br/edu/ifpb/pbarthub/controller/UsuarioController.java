@@ -12,6 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicReference;
 
 @Controller
 @RequestMapping("/usuarios")
@@ -114,11 +115,13 @@ public String adicionarCarrinho(@RequestParam("produtoId") Long produtoId, Usuar
 
         if (usuarioAtual != null) {
             List<Produto> produtos = produtoService.listarTodos();
+            produtos = produtos.subList(0, 3);
 
-            if (produtos.size() > 3) {
-                produtos = produtos.subList(0, 3); // Limita a lista aos 3 primeiros itens
-            }
-
+            AtomicReference<Double> valorTotal = new AtomicReference<>(0.0);
+            produtos.forEach(produto -> {
+                valorTotal.updateAndGet(v -> v + produto.getPreco());
+            });
+            model.addAttribute("total", valorTotal);
             model.addAttribute("usuario", usuarioAtual);
             model.addAttribute("produtos", produtos);
             model.addAttribute("produtosCarrinho", usuarioAtual.getCarrinho());
